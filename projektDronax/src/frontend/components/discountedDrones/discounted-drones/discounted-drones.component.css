@@ -1,0 +1,125 @@
+/* General Styling */
+.pageContent {
+    background: #f4f4f4;
+    font-family: Arial, sans-serif;
+    padding-bottom: 50px;
+}
+
+.section-title {
+    text-align: center;
+    font-size: 2rem;
+    margin: 20px 0;
+    color: #333;
+}
+
+/* Remove blue underline from links */
+.drone-card {
+    text-decoration: none;
+    color: inherit;
+}
+
+.drone-title, .manufacturer, .manufacturer strong {
+    text-decoration: none;
+    color: inherit;
+}
+
+.drone-title:hover, .manufacturer strong:hover {
+    color: #D35424;
+}
+
+/* Drone Grid */
+.drone-container {
+    width: 65%;
+    margin: auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px 0;
+}
+
+/* Drone Card */
+.drone-card {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    width: 280px;
+    padding: 15px;
+    text-align: center;
+    transition: transform 0.3s ease-in-out;
+    position: relative;
+}
+
+.drone-card:hover {
+    transform: scale(1.05);
+}
+
+.drone-image {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+/* Drone Info */
+.drone-title {
+    font-size: 1.3rem;
+    margin: 10px 0;
+    color: #333;
+}
+
+.manufacturer {
+    font-size: 1rem;
+    color: #666;
+}
+
+/* Price Styling */
+.price {
+    font-size: 1.3rem;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.original-price {
+    text-decoration: line-through;
+    color: red;
+    margin-right: 5px;
+}
+
+.discounted-price {
+    color: #FF7F50;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+/* Buy Now Button */
+.buy-now {
+    background: #FF7F50;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+    font-weight: bold;
+    transition: background 0.3s;
+}
+
+.buy-now:hover {
+    background: #D35424;
+}
+
+/* Responsive Fixes */
+@media (max-width: 1024px) {
+    .drone-container {
+        width: 80%;
+    }
+}
+
+@media (max-width: 768px) {
+    .drone-container {
+        width: 95%;
+        flex-direction: column;
+        align-items: center;
+    }
+}

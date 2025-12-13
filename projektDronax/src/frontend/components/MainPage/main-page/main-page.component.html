@@ -1,0 +1,29 @@
+<section class="pageContent">
+    <header>
+        <div class="hero">
+            <div class="hero-text">
+                <h1 class="main-title">Dronax</h1>
+                <p class="sub-title">Where dreams come true</p>
+                <a routerLink="/drones" class="explore-btn">Explore</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <h2 class="section-title">Hot Deals on Drones</h2>
+        <div class="discounted-drone-container">
+            <a [routerLink]="'/drone/' + drone.idDrone" class="drone-card" *ngFor="let drone of topDiscountedDrones">
+                <img [src]="'http://localhost:8081/webpImg/' + drone.imageUrl" alt="{{ drone.droneName }}" class="drone-image">
+                <div class="drone-info">
+                    <h3>{{ drone.droneName }}</h3>
+                    <p class="manufacturer">By: <strong>{{ drone.manufacturerName }}</strong></p>
+                    <p class="price">
+                        <span class="original-price">€ {{ drone.price }}</span>
+                        <span class="discounted-price">€ {{ drone.finalPrice }}</span>
+                    </p>
+                    <button class="buy-now">Buy Now</button>
+                </div>
+            </a>
+        </div>
+    </main>
+</section>

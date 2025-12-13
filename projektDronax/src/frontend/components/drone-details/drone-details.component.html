@@ -1,0 +1,59 @@
+<section class="pageContent">
+<!--     <header>
+        <nav>
+            <div class="container">
+                <a routerLink="/">
+                    <img src="/webpImg/logoWebp.webp" alt="Dronax Logo" class="logo">
+                </a>
+                <ul>
+                    <li><a routerLink="/">Home</a></li>
+                    <li><a href="#">About us</a></li>
+                    <li><a href="#">Discounts</a></li>
+                    <li><a routerLink="/administration">Administration</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header> -->
+
+    <main class="drone-details" *ngIf="drone">
+        <div class="container">
+            <div class="drone-content">
+                <!-- Slider za slike (Lijeva strana) -->
+                <div class="image-slider" *ngIf="drone.pictures?.length > 0">
+                    <button class="prev" (click)="prevSlide()">&#10094;</button>
+                    <img [src]="'http://localhost:8081/webpImg/' + drone.pictures[currentSlide]" alt="{{ drone?.name }}">
+                    <button class="next" (click)="nextSlide()">&#10095;</button>
+                </div>
+
+                <!-- Podaci o dronu (Desna strana) -->
+                <div class="drone-info">
+                    <h1 class="drone-title">{{ drone?.name }}</h1>
+                    <p><strong>Manufacturer</strong> <span class="highlight">{{ drone?.manufacturerName }}</span></p>
+                    <p><strong>Manufacuring date:</strong> <span class="highlight">{{ drone?.manufacturingDate | dateFormat }}</span></p>
+                    <p><strong>Type:</strong> <span class="highlight">{{ drone?.type }}</span></p>
+                    <p class="description">{{ drone?.about }}</p>
+                    <p class="price">
+                        <span *ngIf="drone.discounts?.length > 0" class="original-price">€ {{ drone.price }}</span>
+                        <span class="discounted-price">€ {{ drone.finalPrice }}</span>
+                    </p>
+                    <p *ngIf="drone.discounts?.length > 0">
+                        Discount is valid until: {{ drone.discounts[0].endDate | dateFormat }}
+                    </p>
+                      
+                                      
+                    <label for="quantity">Quantity:</label>
+                    <div class="quantity-selector">
+                        <button class="btn btn-outline-secondary" (click)="decreaseQuantity()">-</button>   
+                        <input id="quantity" type="text" class="form-control text-center" [value]="quantity" readonly>
+                        <button class="btn btn-outline-secondary" (click)="increaseQuantity()">+</button>
+                    </div>
+                    
+                    <button class="btn btn-danger mt-3 add-to-cart" (click)="addToCart()">
+                        <i class="bi bi-cart"></i> Add to cart
+                    </button>
+                    
+                </div>
+            </div>
+        </div>
+    </main>
+</section>

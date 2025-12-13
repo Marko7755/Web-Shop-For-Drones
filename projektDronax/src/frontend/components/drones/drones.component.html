@@ -1,0 +1,45 @@
+<section class="pageContent">
+    <header>
+        <!-- <nav>
+            <div class="container">
+                <a routerLink="">
+                    <img src="webpImg/logoWebp.webp" alt="Dronax Logo" class="logo">
+                </a>
+                <ul>
+                    <li><a routerLink="/">Home</a></li>
+                    <li><a href="#">About us</a></li>
+                    <li><a href="#">Discounts</a></li>
+                    <li><a routerLink="/administration">Administration</a></li>
+                </ul>
+            </div>
+        </nav> -->
+    </header>
+
+   <!--  <section class="filters-container">
+        <div class="container">
+            <button>Articles with discounts</button>
+            <button>Best-selled articles</button>
+            <button>New articles</button>
+            <button>Hobby drones</button>
+            <button>Professional drones</button>
+        </div>
+    </section> -->
+
+    <main>
+        <h2 class="section-title">Available Drones</h2>
+        <div class="drone-container">
+            <a [routerLink]="'/drone/' + drone.idDrone" class="drone-card" *ngFor="let drone of drones">
+                <img [src]="'http://localhost:8081/webpImg/' + drone.imageUrl" alt="{{ drone.droneName }}" class="drone-image">
+                <div class="drone-info">
+                    <h3>{{ drone.droneName }}</h3>
+                    <p class="manufacturer">By: <strong>{{ drone.manufacturerName }}</strong></p>
+                    <p class="price">
+                        <span *ngIf="drone.hasDiscount" class="original-price">{{ drone.price }}€</span>
+                        <span class="discounted-price"> {{ drone.finalPrice }}€</span>
+                    </p>                    
+                      
+                </div>
+            </a>
+        </div>
+    </main>
+</section>

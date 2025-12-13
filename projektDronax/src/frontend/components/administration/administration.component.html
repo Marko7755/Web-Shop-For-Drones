@@ -1,0 +1,292 @@
+<!-- <nav>
+    <div class="container">
+        <a routerLink="">
+            <img src="webpImg/logoWebp.webp" alt="Dronax Logo" class="logo">
+        </a>
+        
+        <ul>
+            <li><a href="#">Dronovi</a></li>
+            <li><a href="#">O nama</a></li>
+            <li><a href="#">Akcije</a></li>
+            <button class="drone-btn" routerLink="/drones">Drones</button>
+        </ul>
+    </div>
+</nav> -->
+
+<section class="admin-panel">
+    <h2>Administration</h2>
+
+    <label for="attributeChoice">Choose attibute:</label>
+    <select id="attributeChoice" [(ngModel)]="selectedAttribute" (ngModelChange)="onSearchInputChange()">
+        <option value="manufacturer">Manufacturer</option>    
+        <option value="drone">Drone</option>  
+        <option value="discount">Discount</option>
+    </select>
+
+
+    <label for="admin-actions">Choose action:</label>
+    <select id="admin-actions" [(ngModel)]="selectedAction">
+        <option value="add">Add</option>
+        <option value="edit">Edit</option>
+        <option value="delete">Delete</option>
+        <option *ngIf="selectedAttribute === 'discount'" value="apply">Apply</option>
+    </select>
+
+
+    <div *ngIf="selectedAttribute === 'manufacturer' && selectedAction === 'add'" class="admin-section">
+        <h3>Add a new Manufacturer</h3>
+        <form [formGroup]="manufacturerForm" (ngSubmit)="submitManufacturer()">
+            <label>Name:</label>
+            <input type="text" formControlName="name">
+            <div *ngIf="manufacturerForm.controls['name'].invalid && manufacturerForm.controls['name'].touched" class="text-danger">Name is required!</div>
+
+            <label>Country:</label>
+            <input type="text" formControlName="country">
+            <div *ngIf="manufacturerForm.controls['country'].invalid && manufacturerForm.controls['country'].touched" class="text-danger">Country is required!</div>
+
+            <button type="submit" [disabled]="!manufacturerForm.valid">Submit</button>
+        </form>
+    </div>
+
+
+    <div *ngIf="selectedAttribute !== '' && selectedAction === 'delete'" class="admin-section">
+        <h3>Search an Attribute</h3>
+        <form [formGroup]="searchForm" (ngSubmit)="searchAttribute(idOrNameAttribute.value)">
+            <input type="text" formControlName="idOrName" #idOrNameAttribute (ngModelChange)="onSearchInputChange()" placeholder="Enter an id or a name for attribute">
+                <div *ngIf="searchForm.controls['idOrName'].invalid && searchForm.controls['idOrName'].touched" class="text-danger">Id or name is required!</div>
+            <button [disabled]="!searchForm.valid">Submit</button>
+        </form>   
+
+        <div *ngIf="selectedAttribute === 'manufacturer' && isFormActivated && this.searchForm.valid">
+            <form [formGroup]="deleteManuForm" (ngSubmit)="deleteManufacturer()">
+                <label>Name:</label>
+                <input type="text" formControlName="name">
+        
+                <label>Country:</label>
+                <input type="text" formControlName="country">
+                
+                <button type="submit">Delete</button>
+            </form>
+        </div>
+
+        <div *ngIf="selectedAttribute === 'drone' && isFormActivated && this.searchForm.valid">
+            <form [formGroup]="deleteDroneForm" (ngSubmit)="deleteDrone()">
+                <label>Manufacturer:</label>
+                <!-- <input type="text" formControlName="idManufacturer" placeholder="Implementation for choosing a manufacturer, add an option for choosing already existing ones"> -->
+                <select formControlName="idManufacturer">
+                    <option *ngFor="let manufacturer of allMantufacturers" value = {{manufacturer.idManufacturer}}>{{manufacturer.name}}</option>
+                </select>
+    
+                <label>Drone name:</label>
+                <input type="text" formControlName="droneName">
+                    <div *ngIf="droneForm.controls['droneName'].invalid && droneForm.controls['droneName'].touched" class="text-danger">Name is required!</div>
+    
+                <label>Type:(hobby or pro drone)</label>
+                <input type="text" formControlName="type">
+    
+                <label>About:</label>
+                <textarea formControlName="about"></textarea>
+    
+                <label>Manufacturing Date:</label>
+                <input type="date" formControlName="manufacturingDate">
+    
+                <label>Existing Pictures:</label>
+                <div *ngIf="existingImages.length > 0">
+                    <div *ngFor="let image of existingImages">
+                        <img [src]="'http://localhost:8081/webpImg/' + image" alt="Drone Image" width="100">
+
+                    </div>
+                </div>
+                    
+                <label>Price (€):</label>
+                <input type="number" formControlName="price">
+                    <div *ngIf="droneForm.controls['price'].invalid && droneForm.controls['price'].touched" class="text-danger">
+                        <span *ngIf="droneForm.controls['price'].hasError('min')">Price must be at least 1€!</span>
+                    </div>
+                <button type="submit">Delete</button>
+            </form>
+        </div>
+
+        <div *ngIf="selectedAttribute === 'discount' && isFormActivated && this.searchForm.valid">
+            <form [formGroup]="deleteDiscountForm" (ngSubmit)="deleteDiscount()">
+                <label>Amount: (%)</label>
+                <input type="number" formControlName="amount" placeholder="5%">
+                <div *ngIf="discountForm.controls['amount'].invalid && discountForm.controls['amount'].touched" class="text-danger">
+                    <span *ngIf="discountForm.controls['amount'].hasError('required')">Discount amount is required!</span>
+                    <span *ngIf="discountForm.controls['amount'].hasError('min')">Discount must be at least 1%!</span>
+                    <span *ngIf="discountForm.controls['amount'].hasError('max')">Max discount amount is 100%!</span>
+                </div>
+                <label>Start date:</label>
+                <input type="date" formControlName="startDate">
+                <label>End date:</label>
+                <input type="date" formControlName="endDate">
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+
+    </div>
+
+
+
+
+    <div *ngIf="selectedAttribute === 'drone' &&  selectedAction === 'add'" class="admin-section">
+        <h3>Add a new Drone</h3>
+        <form [formGroup]="droneForm" (ngSubmit)="submitDrone()">
+            <label>Manufacturer:</label>
+            <!-- <input type="text" formControlName="idManufacturer" placeholder="Implementation for choosing a manufacturer, add an option for choosing already existing ones"> -->
+            <select formControlName="idManufacturer">
+                <option *ngFor="let manufacturer of allMantufacturers" value = {{manufacturer.idManufacturer}}>{{manufacturer.name}}</option>
+            </select>
+
+            <label>Drone name:</label>
+            <input type="text" formControlName="droneName">
+                <div *ngIf="droneForm.controls['droneName'].invalid && droneForm.controls['droneName'].touched" class="text-danger">Name is required!</div>
+
+            <label>Type:(hobby or pro drone)</label>
+            <input type="text" formControlName="type">
+
+            <label>About:</label>
+            <textarea formControlName="about"></textarea>
+
+            <label>Manufacturing Date:</label>
+            <input type="date" formControlName="manufacturingDate">
+
+            <label>Picture(s)</label>
+            <input type="file" (change)="handleFileUpload($event)" multiple name="pictures" accept=".jpg, .jpeg, .png, .webp">
+                <div *ngIf="fileErrorMessage" class="text-danger">{{ fileErrorMessage }}</div>
+                
+            <label>Price (€):</label>
+            <input type="number" formControlName="price">
+                <div *ngIf="droneForm.controls['price'].invalid && droneForm.controls['price'].touched" class="text-danger">
+                    <span *ngIf="droneForm.controls['price'].hasError('min')">Price must be at least 1€!</span>
+                </div>
+            <button type="submit" [disabled]="!droneForm.valid">Submit</button>
+        </form>
+    </div>
+
+
+    <div *ngIf="selectedAttribute === 'discount' && selectedAction === 'add'" class="admin-section">
+        <h3>Add a new Discount</h3>
+        <form [formGroup]="discountForm" (ngSubmit)="submitDiscount()">
+            <label>Amount: (%)</label>
+            <input type="number" formControlName="amount" placeholder="5%">
+            <div *ngIf="discountForm.controls['amount'].invalid && discountForm.controls['amount'].touched" class="text-danger">
+                <span *ngIf="discountForm.controls['amount'].hasError('required')">Discount amount is required!</span>
+                <span *ngIf="discountForm.controls['amount'].hasError('min')">Discount must be at least 1%!</span>
+                <span *ngIf="discountForm.controls['amount'].hasError('max')">Max discount amount is 100%!</span>
+            </div>
+            <label>Start date:</label>
+            <input type="date" formControlName="startDate">
+            <label>End date:</label>
+            <input type="date" formControlName="endDate">
+            <button type="submit" [disabled]="!discountForm.valid">Submit</button>
+        </form>
+    </div>
+
+    <div *ngIf="selectedAttribute !== '' && selectedAction === 'edit'" class="admin-section">
+        <h3>Search an Attribute</h3>
+        <form [formGroup]="searchForm" (ngSubmit)="searchAttribute(idOrNameAttribute.value)">
+            <input type="text" formControlName="idOrName" #idOrNameAttribute (ngModelChange)="onSearchInputChange()" placeholder="Enter an id or a name for attribute">
+                <div *ngIf="searchForm.controls['idOrName'].invalid && searchForm.controls['idOrName'].touched" class="text-danger">Id or name is required!</div>
+            <button [disabled]="!searchForm.valid">Submit</button>
+        </form>   
+
+        <div *ngIf="selectedAttribute === 'manufacturer' && isFormActivated && this.searchForm.valid">
+            <form [formGroup]="manufacturerForm" (ngSubmit)="editManufacturer()">
+                <label>Name:</label>
+                <input type="text" formControlName="name">
+                <div *ngIf="manufacturerForm.controls['name'].invalid && manufacturerForm.controls['name'].touched" class="text-danger">Name is required!</div>
+    
+                <label>Country:</label>
+                <input type="text" formControlName="country">
+                <div *ngIf="manufacturerForm.controls['country'].invalid && manufacturerForm.controls['country'].touched" class="text-danger">Country is required!</div>
+    
+                <button type="submit" [disabled]="!manufacturerForm.valid">Edit</button>
+            </form>
+        </div>
+
+
+        <div *ngIf="selectedAttribute === 'drone' && isFormActivated && this.searchForm.valid" class="admin-section">
+            <form [formGroup]="droneForm" (ngSubmit)="editDrone()">
+                <label>Manufacturer:</label>
+                <!-- <input type="text" formControlName="idManufacturer" placeholder="Implementation for choosing a manufacturer, add an option for choosing already existing ones"> -->
+                <select formControlName="idManufacturer">
+                    <option *ngFor="let manufacturer of allMantufacturers" value = {{manufacturer.idManufacturer}}>{{manufacturer.name}}</option>
+                </select>
+    
+                <label>Drone name:</label>
+                <input type="text" formControlName="droneName">
+                    <div *ngIf="droneForm.controls['droneName'].invalid && droneForm.controls['droneName'].touched" class="text-danger">Name is required!</div>
+    
+                <label>Type:(hobby or pro drone)</label>
+                <input type="text" formControlName="type">
+    
+                <label>About:</label>
+                <textarea formControlName="about"></textarea>
+    
+                <label>Manufacturing Date:</label>
+                <input type="date" formControlName="manufacturingDate">
+    
+                <label>Existing Pictures:</label>
+                <div *ngIf="existingImages.length > 0">
+                    <div *ngFor="let image of existingImages">
+                        <img [src]="'http://localhost:8081/webpImg/' + image" alt="Drone Image" width="100">
+                    </div>
+                </div>
+
+
+
+                <label>Picture(s)</label>
+                <input type="file" (change)="handleFileUpload($event)" multiple name="pictures" accept=".jpg, .jpeg, .png, .webp">
+                    <div *ngIf="fileErrorMessage" class="text-danger">{{ fileErrorMessage }}</div>
+                    
+                <label>Price (€):</label>
+                <input type="number" formControlName="price">
+                    <div *ngIf="droneForm.controls['price'].invalid && droneForm.controls['price'].touched" class="text-danger">
+                        <span *ngIf="droneForm.controls['price'].hasError('min')">Price must be at least 1€!</span>
+                    </div>
+                <button type="submit" [disabled]="!droneForm.valid">Submit</button>
+            </form>
+        </div>
+
+        <div *ngIf="selectedAttribute === 'discount' && isFormActivated && this.searchForm.valid" class="admin-section">
+            <form [formGroup]="discountForm" (ngSubmit)="editDiscount()">
+                <label>Amount: (%)</label>
+                <input type="number" formControlName="amount" placeholder="5%">
+                <div *ngIf="discountForm.controls['amount'].invalid && discountForm.controls['amount'].touched" class="text-danger">
+                    <span *ngIf="discountForm.controls['amount'].hasError('required')">Discount amount is required!</span>
+                    <span *ngIf="discountForm.controls['amount'].hasError('min')">Discount must be at least 1%!</span>
+                    <span *ngIf="discountForm.controls['amount'].hasError('max')">Max discount amount is 100%!</span>
+                </div>
+                <label>Start date:</label>
+                <input type="date" formControlName="startDate">
+                <label>End date:</label>
+                <input type="date" formControlName="endDate">
+                <button type="submit" [disabled]="!discountForm.valid">Submit</button>
+            </form>
+        </div>
+        
+
+    </div>
+
+    <div *ngIf="selectedAttribute === 'discount' && selectedAction === 'apply'">
+        <h3>Apply Discount to a Drone</h3>
+        <form [formGroup]="searchForm" (ngSubmit)="searchAttribute(idOrNameAttribute.value)">
+          <input type="text" formControlName="idOrName" #idOrNameAttribute (ngModelChange)="onSearchInputChange()" placeholder="Enter Drone ID or Name">
+          <button type="submit" [disabled]="!searchForm.valid">Search</button>
+        </form>
+      
+        <div *ngIf="isFormActivated && selectedDroneId">
+          <label for="discountSelect">Select Discount:</label>
+          <select id="discountSelect" [(ngModel)]="selectedDiscountId">
+            <option *ngFor="let discount of allDiscounts" [value]="discount.idDiscount">
+              {{ discount.amount }}% ({{ discount.startDate | dateFormat }} - {{ discount.endDate | dateFormat}})
+            </option>
+          </select>
+          <button (click)="applyDiscountToDrone()">Apply Discount</button>
+        </div>
+      </div>
+      
+    
+
+</section>

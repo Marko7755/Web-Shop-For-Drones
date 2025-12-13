@@ -1,0 +1,59 @@
+<div class="auth-container">
+    <div class="auth-box">
+        <h2>Register</h2>
+        <form novalidate #registerForm="ngForm">
+            
+            <!-- Username -->
+            <div class="form-group">
+                <label id="gray" for="username">Username:</label>
+                <input type="text" id="username" class="form-control" [(ngModel)]="user.username" name="username" placeholder="Username" required minlength="4" #username="ngModel">
+                <div *ngIf="username.invalid && username.touched" class="text-danger" id="errorDiv">
+                    <p *ngIf="username.errors?.['required']">Username is required</p>
+                    <p *ngIf="username.errors?.['minlength']">Username must be at least 4 characters long</p>
+                </div>
+            </div>
+
+            <!-- Password -->
+            <div class="form-group">
+                <label id="gray" for="password">Password:</label>
+                <input type="password" id="password" class="form-control" [(ngModel)]="user.password" name="password" placeholder="Password" required #password="ngModel" (ngModelChange)="validatePasswords()">
+                <div *ngIf="password.invalid && password.touched" class="text-danger" id="errorDiv">
+                    <p>Password is required</p>
+                </div>
+            </div>
+
+            <!-- Repeat Password -->
+            <div class="form-group">
+                <label id="gray" for="repeatPassword">Repeat password:</label>
+                <input type="password" id="repeatPassword" class="form-control" [(ngModel)]="user.repeatPassword" name="repeatPassword" placeholder="Repeat password" required #repeatPassword="ngModel" (ngModelChange)="validatePasswords()">
+                <div *ngIf="repeatPassword.invalid && repeatPassword.touched" class="text-danger" id="errorDiv">
+                    <p>Password retype is required</p>
+                </div>
+                <div *ngIf="passwordMismatch && repeatPassword.touched" class="text-danger">
+                    <p>Passwords do not match</p>
+                </div>
+            </div>
+
+            <!-- Full Name -->
+            <div class="form-group">
+                <label id="gray" for="name">Full Name:</label>
+                <input type="text" id="name" class="form-control" [(ngModel)]="user.name" name="name" placeholder="Full Name" required #name="ngModel">
+                <div *ngIf="name.invalid && name.touched" class="text-danger" id="errorDiv">
+                    <p>Full Name is required</p>
+                </div>
+            </div>
+
+
+            <!-- Register Button -->
+            <div class="form-group d-flex mt-3">
+                <button (click)="register(registerForm)" type="submit" class="btn btn-primary flex-grow-1" [disabled]="registerForm.invalid || passwordMismatch">Register!</button>
+            </div>
+        
+            <!-- Login Link -->
+            <div class="form-group">
+                <a [routerLink]="'/login'" style="width: 20px;">Login instead</a>
+            </div>
+            
+        </form>
+    </div>
+</div>

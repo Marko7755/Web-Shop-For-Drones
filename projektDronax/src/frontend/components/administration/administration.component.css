@@ -1,0 +1,78 @@
+/* body {
+    font-family: Arial, sans-serif;
+    background-color: rgb(193, 78, 78);
+    margin: 0;
+    padding: 0;
+} */
+
+nav {
+    background: #D35424;
+    padding: 15px 0;
+    text-align: center;
+}
+
+.logo {
+    height: 80px;
+}
+
+nav .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 80%;
+    margin: auto;
+}
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+.admin-panel {
+    background: lightgray;
+    width: 60%;
+    margin: 50px auto;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+.admin-panel h2, .admin-panel h3 {
+    text-align: center;
+    color: #D35424;
+}
+.admin-section {
+    margin-top: 20px;
+    padding: 20px;
+}
+label {
+    display: block;
+    margin: 10px 0 5px;
+    font-weight: bold;
+}
+input, textarea, select, button {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+button {
+    background: #D35424;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+}
+
+button:disabled {
+    background-color: #D35424;
+    color: white;           
+    border-color: #D35424;    
+    cursor: not-allowed;     
+    opacity: 0.7;      
+}
+

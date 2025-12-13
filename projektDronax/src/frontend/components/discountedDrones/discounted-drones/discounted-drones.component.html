@@ -1,0 +1,19 @@
+<section class="pageContent">
+    <main>
+        <h2 class="section-title">Drones on Discount</h2>
+        <div class="drone-container">
+            <a [routerLink]="'/drone/' + drone.idDrone" class="drone-card" *ngFor="let drone of discountedDrones">
+                <img [src]="'http://localhost:8081/webpImg/' + drone.imageUrl" alt="{{ drone.droneName }}" class="drone-image">
+                <div class="drone-info">
+                    <h3 class="drone-title">{{ drone.droneName }}</h3>
+                    <p class="manufacturer">By: <strong>{{ drone.manufacturerName }}</strong></p>
+                    <p class="price">
+                        <span class="original-price">€ {{ drone.price }}</span>
+                        <span class="discounted-price">€ {{ drone.finalPrice }}</span>
+                    </p>
+                    <button class="buy-now">Buy Now</button>
+                </div>
+            </a>
+        </div>
+    </main>
+</section>

@@ -1,0 +1,54 @@
+<nav class="navbar">
+    <div class="logo">
+      <a routerLink="/"><img src="webpImg/logoWebp.webp" alt="Dronax Logo"></a>
+      <!-- Show "Hello, username" next to logo -->
+      <span class="user-greeting" *ngIf="isAuthenticated()">
+        Hello, <span class="user-name">{{ userName }}</span>
+      </span>
+    </div>
+    
+    <div class="nav-links">
+      <a routerLink="/drones">Drones</a>
+      <a routerLink="/discounts">Discounts</a>
+      <a routerLink="/about">About Us</a>
+      <a *ngIf="isAdmin()" routerLink="/administration">Administration</a>
+    </div>
+
+    <!-- Cart & Auth Button Aligned Horizontally -->
+    <div class="nav-right">
+      <div class="cart-icon" (click)="toggleCart()">
+        <i class="bi bi-cart-fill"></i>
+        <span *ngIf="cartItems.length > 0" class="cart-count">{{ cartItems.length }}</span>
+      </div>
+      
+      <div class="auth-button">
+        <button (click)="handleAuth()">{{ isAuthenticated() ? 'Logout' : 'Login' }}</button>
+      </div>
+    </div>
+</nav>
+
+
+
+  
+ <!-- Cart Dropdown -->
+<div class="cart-dropdown" *ngIf="showCart">
+    <h4>{{ cartItems.length }} articles in cart</h4>
+    <div *ngFor="let item of cartItems" class="cart-item">
+      <img [src]="'http://localhost:8081/webpImg/' + item.imageUrl" alt="{{ item.droneName }}">
+      <div class="cart-item-details">
+        <p><strong><a [routerLink]="'/drone/' + item.idDrone" class="drone-link">{{ item.name }}</a></strong></p>
+        <p>{{ item.price }} €</p>
+        <p>Quantity: {{ item.quantity }}</p>
+      </div>
+      <button class="delete-btn" (click)="deleteItem(item.idDrone)">
+        <i class="bi bi-trash"></i>
+      </button>
+    </div>
+    
+    <!-- Total Price Display -->
+    <div class="cart-total">
+      <strong>Total Price:</strong> {{ totalPrice.toFixed(2) }} €
+    </div>
+  
+    <button class="checkout-btn">Proceed to checkout</button>
+  </div>
