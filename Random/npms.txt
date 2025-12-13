@@ -1,0 +1,6 @@
+npm install promise-mysql
+npm install dotenv
+npm install bootstrap
+npm install multer
+npm install cors
+npm install express bcrypt jsonwebtoken

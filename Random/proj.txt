@@ -1,0 +1,12 @@
+moze se stisnuti na servis kad se stisne na rezervi dijelovi
+staviti formu za popunjavanje podataka za servis drona tj kvar koji je da se moze odabrat za koji dron i opis kvara
+
+
+
+
+ograniciti na cca 6 artikla po odjeljku tipa za artikli na akciji da ih bude 6 ili novi u ponudi...
+
+
+u Dronovi sekciji napraviti sort dronova po marki
+
+lastDiscountDate u Drone_Discount tablici ce biti endDate atribut iz Discount tablice

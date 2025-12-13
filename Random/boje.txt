@@ -1,0 +1,48 @@
+#4416F5
+#1CBBF5
+#29F5DA
+
+
+
+
+1. Tamna narančasta (#FF7F50)
+Topla, energična i privlačna boja.
+
+Gumbi i akcije:
+Koristite je za gumbe poput "Prijava," "Dodaj u košaricu," "Kupite sada."
+Primjer: Glavni gumb na stranici (kao što ste već koristili za "Prijava").
+Istaknuti tekst:
+Koristite je za privlačenje pažnje na promotivne poruke, naslove akcija ili ključne informacije (npr. "Sniženje -50%!").
+Ikonice:
+Koristite za interaktivne elemente poput ikonica košarice ili strelica za navigaciju.
+
+
+2. Zlatna (#FFC107)
+Elegantna, premium boja koja dodaje luksuzni dojam.
+
+Hover efekti:
+Navigacijski tekst ("Dronovi," "Rezervni dijelovi") može mijenjati boju u zlatnu prilikom prelaska mišem.
+Cijene:
+Istaknite cijene premium proizvoda u ovoj boji kako biste im dali naglasak.
+Dekorativni elementi:
+Koristite zlatne linije, obrube ili male detalje za naglašavanje dijelova dizajna (npr. odvajanje sekcija na stranici).
+
+#3B5A8C - plava radije
+#F0ECEC - svijetlo siva sivu za pozadinu ovkira dronova
+3. Tamno ljubičasta (#4B0082)
+Duboka i kontrastna boja, idealna za pozadine ili ozbiljne tonove.
+
+Pozadine:
+Sekcije koje trebaju biti vizualno odvojene, poput opisa proizvoda ili istaknutih recenzija, mogu imati tamno ljubičastu pozadinu s bijelim tekstom.
+Naglasci:
+Koristite ljubičastu za istaknute rubove ili podcrtavanje važnih informacija (npr. naslove sekcija).
+Footer:
+#D35424
+
+Ljubičasta pozadina u footeru s bijelim ili svijetlo sivim tekstom za profesionalan završetak stranice.
+Kombinacija boja u dizajnu:
+Bijeli tekst (#FFFFFF): Glavna navigacija i opisi.
+Tamna narančasta (#FF7F50): Gumbi i ključni pozivi na akciju.
+Zlatna (#FFC107): Istaknuti hover efekti, dekoracija ili cijene.
+Tamno ljubičasta (#4B0082): Pozadine za sekcije i footer.
+Ove boje zajedno stvaraju vizualnu ravnotežu, čineći webshop profesionalnim i atraktivnim. Ako trebate dodatne prijedloge ili primjere implementacije, slobodno se javite! 😊

@@ -1,0 +1,1 @@
+napraviti pipe za format datuma -> administration .ts - 265 linija

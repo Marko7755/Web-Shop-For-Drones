@@ -1,0 +1,4 @@
+INSERT INTO ShoppingCart (idUser, idDrone, quantity) 
+VALUES (1, 102, 1)
+ON DUPLICATE KEY UPDATE quantity = quantity + 1;
+

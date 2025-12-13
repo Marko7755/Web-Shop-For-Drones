@@ -1,0 +1,56 @@
+1️⃣ When a User Adds a Drone to the Shopping Cart
+Case 1: The Drone is NOT in the Cart Yet
+If the user hasn't added this specific drone before, a new row is inserted with idUser, idDrone, and quantity = 1.
+✅ Example:
+
+sql
+Copy
+Edit
+INSERT INTO ShoppingCart (idUser, idDrone, quantity) 
+VALUES (1, 101, 1)
+ON DUPLICATE KEY UPDATE quantity = quantity + 1;
+💾 Database Result (Before adding)
+
+idUser	idDrone	quantity
+1	102	1
+⬇️ After executing the query:
+
+idUser	idDrone	quantity
+1	102	1
+1	101	1
+Case 2: The Drone is ALREADY in the Cart
+If the same user is adding the same drone again, instead of inserting a new row, the existing quantity is increased.
+✅ Example (User already has Drone 101 in the cart, now adds another one):
+
+sql
+Copy
+Edit
+INSERT INTO ShoppingCart (idUser, idDrone, quantity) 
+VALUES (1, 101, 1)
+ON DUPLICATE KEY UPDATE quantity = quantity + 1;
+💾 Database Result (Before adding)
+
+idUser	idDrone	quantity
+1	101	1
+⬇️ After executing the query:
+
+idUser	idDrone	quantity
+1	101	2
+2️⃣ Why Does This Work?
+When you have a composite primary key (idUser, idDrone), both values must be duplicated for the ON DUPLICATE KEY UPDATE statement to trigger.
+
+✅ If idUser and idDrone combination already exists → Only the quantity updates.
+✅ If idUser and idDrone combination does NOT exist → A new row is inserted.
+3️⃣ What Happens If There's No Composite Key?
+If you only had idUser as a primary key, then:
+❌ A user could only have one row, meaning they could only store one drone at a time.
+❌ You wouldn't be able to differentiate which drones a user has.
+
+With idUser + idDrone as a composite key, each user can have multiple different drones in their cart, and adding the same drone again just updates the quantity instead of inserting a duplicate row.
+
+4️⃣ Key Takeaway
+🔹 A composite primary key (idUser, idDrone) prevents duplicate rows while allowing multiple drones per user.
+🔹 Both keys must match for ON DUPLICATE KEY UPDATE to trigger (otherwise, a new row is inserted).
+🔹 Simple and efficient way to manage a shopping cart system.
+
+🚀 Let me know if anything needs further clarification! 😊

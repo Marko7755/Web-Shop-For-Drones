@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dronax</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            width: 65%;
+            margin: auto;
+        }
+        .hero {
+            background: url('../../webpImg/homepageWebp.webp') no-repeat center center/cover;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+        }
+        nav {
+            width: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 10px 0;
+        }
+        nav .container {
+            width: 65%;
+            margin: auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            height: 50px;
+        }
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+        }
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+        }
+        .drone-btn {
+            background: #FF7F50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+        }
+        .filters-container {
+            background: #FFC107;
+            width: 100%;
+            padding: 20px 0;
+        }
+        .filters-container .container {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            align-items: center;
+        }
+        .filters-container button {
+            background: white;
+            color: white;
+            border: none;
+            cursor: pointer;
+            position: relative;
+            background: #FFC107;
+            padding: 10px;
+        }
+        .filters-container button:not(:last-child)::after {
+            content: "";
+            position: absolute;
+            right: -5px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 2px;
+            height: 100%;
+            background-color: white;
+        }
+        .drone-container {
+            width: 65%;
+            margin: auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding: 20px 0;
+        }
+        footer {
+            background: #D35424;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+        }
+        footer .container {
+            text-align: center;
+        }
+        @media (max-width: 1024px) {
+            .container, nav .container, footer .container, .drone-container {
+                width: 80%;
+            }
+        }
+        @media (max-width: 768px) {
+            .container, nav .container, footer .container, .drone-container {
+                width: 95%;
+            }
+            nav ul {
+                flex-direction: column;
+                text-align: center;
+            }
+            .filters-container .container {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="container">
+                <img src="../../webpImg/logoWebp.webp" alt="Dronax Logo" class="logo">
+                <ul>
+                    <li><a href="#">Dronovi</a></li>
+                    <li><a href="#">Rezervni dijelovi</a></li>
+                    <li><a href="#">O nama</a></li>
+                    <li><a href="#">Akcije</a></li>
+                </ul>
+                <button class="drone-btn">Dronovi</button>
+            </div>
+        </nav>
+       <!--  <div class="hero">
+            <div class="hero-text">
+                <h1>Dronax</h1>
+                <p>Where dreams come true</p>
+            </div>
+        </div> -->
+    </header>
+    <br> <br> <br> <br> <br> <br> <br> <br> <br>
+    <section class="filters-container">
+        <div class="container">
+            <button>Artikli na akciji</button>
+            <button>Najprodavaniji artikli</button>
+            <button>Novo u ponudi</button>
+            <button>Hobi dronovi</button>
+            <button>Profesionalni dronovi</button>
+        </div>
+    </section>
+    
+    <main>
+        <div class="drone-container">
+            <!-- Dronovi će se prikazivati ovdje dinamički -->
+        </div>
+    </main>
+    
+    <!-- <footer>
+        <div class="container">
+            <p>&copy; 2025 Dronax. Sva prava pridržana.</p>
+        </div>
+    </footer> -->
+</body>
+</html>
