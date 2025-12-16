@@ -3,6 +3,10 @@
 Dronax is a full-stack web application for an online drone shop.
 The project includes both frontend and backend logic, with a focus on clean architecture, RESTful APIs, authentication, and administrative management.
 
+Demo Video
+Watch the project presentation on YouTube:
+👉https://youtu.be/pWzCi-LH6Bo
+
 🛠️ Technologies Used
 Frontend
 
